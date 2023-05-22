@@ -1,0 +1,130 @@
+"Programa:
+Máquina: Hypertherm_XPR_300
+Hora: 09:34:03 Data: 09/05/2023
+Y:\Cnc\Plasma_Cnc\11144261.NC
+Posição das Garras
+58267.328 mm21.5% Sucata Real:
+-13.6% Sucata Ret.:94 Qtde Requerida:
+48 Qtde Arranjada:
+SAE 1020 Material:
+2.65 mm Espessura:
+Chapa:3000.000 mm Comp. Chapa:
+1200.000 mm Altura Chapa:
+00:39:43 Tempo de Corte:2993.999 mm Usado em X:
+1193.999 mm Usado em Y:
+Comp. Corte:Programador: Custo total: Vagner
+Nome da tarefa: 1114426
+Nº de Chapas com o Mesmo Formato:
+Garra 1: Garra 2: 0 0Ch Base:11144261 Plano de Corte:
+58.25 Peso total:1
+Power_Level=50AMP_O2/AIR
+ID Peça Qtd. Arranjada Revisão Dim.  X   Nº do Pedido Nº Desenho Imagem Tempo Pç. Dim. Y Tempo Total
+2 125875 2 527.00 mm 50.00 mm 1114848
+ 00:02:21 00:01:11
+3 55696 22 192.00 mm 122.00 mm 1114775
+ 00:19:05 00:00:52
+4 55694 1 192.00 mm 122.00 mm 1114774
+ 00:00:44 00:00:44
+5 117270 2 452.55 mm 231.06 mm 1114687
+ 00:02:27 00:01:13
+7 125923 9 339.52 mm 205.09 mm 1114575
+ 00:04:53 00:00:33
+8 118027 1 653.70 mm 399.35 mm 1114537
+ 00:01:10 00:01:10
+9 118026 1 653.70 mm 399.35 mm 1114536
+ 00:02:01 00:02:01
+10 63865 2 589.57 mm 373.50 mm 1114507
+ 00:01:09 00:00:34
+11 63850 2 707.31 mm 409.11 mm 1114505
+ 00:01:42 00:00:51
+12 17011 1 608.36 mm 343.54 mm 1114474
+ 00:00:52 00:00:52
+Página 1 Y:\Cnc\Plasma_Cnc\3977.ws"
+"Programa:
+Máquina: Hypertherm_XPR_300
+Hora: 09:34:03 Data: 09/05/2023
+Y:\Cnc\Plasma_Cnc\11144261.NC
+ID Peça Qtd. Arranjada Revisão Dim.  X   Nº do Pedido Nº Desenho Imagem Tempo Pç. Dim. Y Tempo Total
+13 17010 1 608.36 mm 343.54 mm 1114473
+ 00:00:27 00:00:27
+14 17007 4 537.39 mm 235.05 mm 1114472
+ 00:02:42 00:00:41
+Evento
+Tempo Setup
+Tempo Descarga
+Tempo Reposicionamento
+Tempo Abertura PortaDescarga Manual
+Manuseio de Peça
+Tempo Troca FerramentaProcesso Primário
+Tempo Perfuração
+Tempo Deslocamento
+Tempo Corte
+Tempo Troca de Processo
+TEMPO DE OPERAÇÃO
+Tempo Total do EventoTEMPO SETUP
+Tempo Total NestQtde Duração Tempo do Evento Duração Total
+0.0 s 00:00:00
+0 0.0 s 00:00:000 0.0 s 00:00:00
+0 0.0 s 00:00:00
+0 0.0 s00:00:37
+00:28:39
+00:10:27
+00:39:43
+00:39:43011 0.0 s
+0.0 s
+Página 2 Y:\Cnc\Plasma_Cnc\3977.ws"
+"Programa:
+Máquina: Hypertherm_XPR_300
+Hora: 09:34:03 Data: 09/05/2023
+Y:\Cnc\Plasma_Cnc\11144262.NC
+Posição das Garras
+46561.393 mm40.1% Sucata Real:
+2.3% Sucata Ret.:94 Qtde Requerida:
+46 Qtde Arranjada:
+SAE 1020 Material:
+2.65 mm Espessura:
+Chapa:3000.000 mm Comp. Chapa:
+1200.000 mm Altura Chapa:
+00:36:16 Tempo de Corte:1260.394 mm Usado em X:
+1193.999 mm Usado em Y:
+Comp. Corte:Programador: Custo total: Vagner
+Nome da tarefa: 1114426
+Nº de Chapas com o Mesmo Formato:
+Garra 1: Garra 2: 0 0Ch Base:11144262 Plano de Corte:
+17.52 Peso total:1
+Power_Level=50AMP_O2/AIR
+ID Peça Qtd. Arranjada Revisão Dim.  X   Nº do Pedido Nº Desenho Imagem Tempo Pç. Dim. Y Tempo Total
+1 125716 1 700.00 mm 50.00 mm 1114849
+ 00:00:59 00:00:59
+3 55696 24 192.00 mm 122.00 mm 1114775
+ 00:20:49 00:00:52
+6 27982 6 188.00 mm 188.00 mm 1114657
+ 00:02:48 00:00:28
+7 125923 3 339.52 mm 205.09 mm 1114575
+ 00:01:38 00:00:33
+15 125787 12 217.00 mm 126.20 mm 1114426
+ 00:10:13 00:00:51
+Evento
+Tempo Setup
+Tempo Descarga
+Tempo Reposicionamento
+Tempo Abertura PortaDescarga Manual
+Manuseio de Peça
+Tempo Troca FerramentaProcesso Primário
+Tempo Perfuração
+Tempo Deslocamento
+Tempo Corte
+Tempo Troca de Processo
+TEMPO DE OPERAÇÃO
+Tempo Total do EventoTEMPO SETUP
+Tempo Total NestQtde Duração Tempo do Evento Duração Total
+0.0 s 00:00:00
+0 0.0 s 00:00:000 0.0 s 00:00:00
+0 0.0 s 00:00:00
+0 0.0 s00:00:42
+00:26:49
+00:08:45
+00:36:16
+00:36:16011 0.0 s
+0.0 s
+Página 3 Y:\Cnc\Plasma_Cnc\3977.ws"
