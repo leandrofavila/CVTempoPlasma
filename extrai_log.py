@@ -2,6 +2,7 @@ import re
 import pandas as pd
 import csv
 from PyPDF2 import *
+from conecta_db import DB
 
 with open(r"Z:\PCP\Log_PlasmaXPR170.txt", "r", encoding='utf-8') as text:
     lines = text.readlines()
@@ -35,24 +36,35 @@ class Extrai_dados_pdf(Extrai_dados):
         super().__init__()
         self.last = self.make_df().iloc[-1]
 
-    def tempo_sigma(self):
-        last_line = '1114426'#self.last[0]
-        path = rf"Y:\Cnc\Plasma_Cnc\Pdf_Xml\{last_line}.PDF"
-        reader = PdfReader(path)
-        with open('text.csv', 'w', encoding='utf-8') as f:
-            for pg in range(len(reader.pages)):
-                page = reader.pages[pg]
-                tex = [page.extract_text()]
-                writer = csv.writer(f)
-                writer.writerow(tex)
-        mieggs = pd.read_csv('text.csv')
-        print(mieggs)
-        for line in mieggs:
-            #print(line)
-            dasda = re.findall('[0-9]{5,7}', line)
-            return dasda
+    def dados_pdf(self):
+        last_line = '1114426'  # self.last[0]
+        op_pdf = []
+        filtred_op = []
+        reader = PdfReader(f"Y:\\Cnc\\Plasma_Cnc\\Pdf_Xml\\{last_line}.PDF")
+        for pg in range(len(reader.pages)):
+            page = reader.pages[pg]
+            tex = page.extract_text().split('\n')
+            for line in tex:
+                op_pdf.append(re.findall(
+                    '[0-9]{1,3} [0-9]{5,6} [0-9]{1,4} [0-9]{2,4}.[0-9]{2} mm [0-9]{2,4}.[0-9]{2} mm [0-9]{6,7}', line))
+        op_pdf = [*set(w for k in op_pdf for w in k)]
+        op_ = [l.split(' ') for l in op_pdf]
+        for sublist in op_:
+            is_float = lambda x: isinstance(x, float)
+            float_list = list(map(lambda x: float(x) if "." in x else x, sublist))
+            op_ = list(filter(lambda x: not is_float(x), float_list))
+            filtred_op.append(op_)
+        df = pd.DataFrame(filtred_op, columns=['id_pdf', 'cod_item', 'qtde', 'sai', 'out', 'op'])
+        df = df.drop(['sai', 'out'], axis=1).astype(int)
+        df = df.groupby(['id_pdf', 'cod_item', 'op'])['qtde'].sum()
+        print(df[6])
+        return df
+
+    def get_focco_time(self):
+        cod_item = self.dados_pdf()
+        #cod_item = cod_item['cod_item']
+        return cod_item
 
 
 de = Extrai_dados_pdf()
-print(de.tempo_sigma())
-
+print(de.get_focco_time())
