@@ -36,35 +36,36 @@ class Extrai_dados_pdf(Extrai_dados):
         super().__init__()
         self.last = self.make_df().iloc[-1]
 
+    ###todo trazer os tempos do Sigma para o df
+    @property
     def dados_pdf(self):
-        last_line = '1114426'  # self.last[0]
+        last_line = '1114426'  # self.last[0]#  1117713
         op_pdf = []
-        filtred_op = []
         reader = PdfReader(f"Y:\\Cnc\\Plasma_Cnc\\Pdf_Xml\\{last_line}.PDF")
         for pg in range(len(reader.pages)):
             page = reader.pages[pg]
-            tex = page.extract_text().split('\n')
+            tex = page.extract_text().split('Programa:')
             for line in tex:
-                op_pdf.append(re.findall(
-                    '[0-9]{1,3} [0-9]{5,6} [0-9]{1,4} [0-9]{2,4}.[0-9]{2} mm [0-9]{2,4}.[0-9]{2} mm [0-9]{6,7}', line))
-        op_pdf = [*set(w for k in op_pdf for w in k)]
+                op_pdf.append(re.findall('[0-9]{1,3} [0-9]{5,6} [0-9]{1,4} [0-9]{2,4}.[0-9]{2}'
+                                         ' mm [0-9]{2,4}.[0-9]{2} mm [0-9]{6,7}\n '
+                                         '[0-9]{2}:[0-9]{2}:[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}', line))
+        op_pdf = [w for k in op_pdf for w in k]
         op_ = [l.split(' ') for l in op_pdf]
-        for sublist in op_:
-            is_float = lambda x: isinstance(x, float)
-            float_list = list(map(lambda x: float(x) if "." in x else x, sublist))
-            op_ = list(filter(lambda x: not is_float(x), float_list))
-            filtred_op.append(op_)
-        df = pd.DataFrame(filtred_op, columns=['id_pdf', 'cod_item', 'qtde', 'sai', 'out', 'op'])
-        df = df.drop(['sai', 'out'], axis=1).astype(int)
-        df = df.groupby(['id_pdf', 'cod_item', 'op'])['qtde'].sum()
-        print(df[6])
+        df = pd.DataFrame(op_, columns=['id_pdf', 'cod_item', 'qtde', 'sai_1',
+                                        'sai_2', 'sai_3', 'sai_4', 'op', 'sai_5', 'single_time'])
+        df = df.drop(['sai_1', 'sai_2', 'sai_3', 'sai_4', 'sai_5'], axis=1)
+        df['qtde'] = df['qtde'].astype(int)
+        df['single_time'] = pd.to_datetime(df['single_time'], format='%H:%M:%S').dt.time
+        df = df.groupby(['id_pdf', 'cod_item', 'op', 'single_time'], as_index=False)['qtde'].sum()
+        df['op'] = df['op'].str.replace('\n', '')
         return df
 
     def get_focco_time(self):
-        cod_item = self.dados_pdf()
-        #cod_item = cod_item['cod_item']
+        cod_item = self.dados_pdf
+        cod_item = cod_item['cod_item']
+        DB.tempos_focco(cod_item)
         return cod_item
 
 
 de = Extrai_dados_pdf()
-print(de.get_focco_time())
+de.get_focco_time()

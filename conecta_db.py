@@ -3,9 +3,10 @@ import pandas as pd
 
 
 class DB:
-    def __init__(self, carregamento, ops):
+    def __init__(self, carregamento, ops, cod_item):
         self.carregamento = carregamento
         self.ops = ops
+        self.cod_item = cod_item
 
     @staticmethod
     def connection():
@@ -107,4 +108,18 @@ class DB:
             r"WHERE TOR.NUM_ORDEM IN ("+str(self.ops)+") "
         )
         possiveis_carr = cur.fetchall()
-        
+
+    def tempos_focco(self):
+        cod_item = self.cod_item
+        cod_item = ', '.join(cod_item)
+        print(cod_item)
+        cur = self.connection
+        cur.execute(
+            r"SELECT EMP.COD_ITEM, SUM(TROT.TEMPO) "
+            r"FROM FOCCO3I.TROTEIRO TROT "
+            r",FOCCO3I.TITENS_EMPR EMP "
+            r"WHERE TROT.ITEMPR_ID = EMP.ID "
+            r"AND EMP,COD_ITEM IN ("+cod_item+") "
+            r"GROUP BY EMP.COD_ITEM "
+        )
+
